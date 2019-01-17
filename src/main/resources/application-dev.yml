@@ -1,0 +1,88 @@
+server:
+  port: 3000
+
+netty:
+  host: 127.0.0.1
+  port: 9090
+
+upload:
+  rootpath: upload-dir
+
+# 禁用缓存
+spring:
+  # 配置 thymeleaf 在开发环境禁用缓存
+  thymeleaf:
+    cache: false
+  # 数据源
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/school
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    # 配置数据库连接池
+    druid:
+      initial-size: 50
+      max-active: 1000
+      min-idle: 50
+      max-wait: 60000
+  jpa:
+    database: MYSQL
+    show-sql: true
+  # email
+  mail:
+    host: smtp.163.com
+    username: 13227379709@163.com
+    password: abcd1234
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+          required: true
+  # redis
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    pool:
+      max-active: 20
+      max-wait: -1
+      max-idle: 10
+      min-idle: 0
+    timeout: 6000
+  # rabbitMQ
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: spring
+    password: spring
+
+# info 配置项（/actuator/info）
+info:
+  author: xiaop1ng
+  email: jianchaoping@gmail.com
+  version: 1.0.0
+
+# 配置 actuator 加载所有的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# 配置 Memcache
+memcache:
+  servers: 114.67.231.183:11211
+  failover: true
+  initConn: 100
+  minConn: 20
+  maxConn: 1000
+  maintSleep: 50
+  nagel: false
+  socketTO: 3000
+  aliveCheck: true
